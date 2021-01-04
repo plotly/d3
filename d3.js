@@ -1,6 +1,6 @@
 !function() {
   var d3 = {
-    version: "3.5.17"
+    version: "3.5.18"
   };
   var d3_arraySlice = [].slice, d3_array = function(list) {
     return d3_arraySlice.call(list);
@@ -2037,9 +2037,14 @@
       var o;
       return dsv.parseRows(text, function(row, i) {
         if (o) return o(row, i - 1);
-        var a = new Function("d", "return {" + row.map(function(name, i) {
-          return JSON.stringify(name) + ": d[" + i + "]";
-        }).join(",") + "}");
+        var a = function(d) {
+          var obj = {};
+          var len = row.length;
+          for (var k = 0; k < len; ++k) {
+            obj[row[k]] = d[k];
+          }
+          return obj;
+        };
         o = f ? function(row, i) {
           return f(a(row), i);
         } : a;
