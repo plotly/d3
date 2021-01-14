@@ -8,7 +8,6 @@ import "core/";
 import "dsv/";
 import "event/";
 import "format/";
-import "geo/";
 import "geom/";
 import "interpolate/";
 import "layout/";
