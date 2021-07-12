@@ -102,18 +102,6 @@ suite.addBatch({
         assert.inDelta(x(1), 0, 1e-6);
         assert.inDelta(x(1.5), 0.6666667, 1e-6);
         assert.inDelta(x(2), 1, 1e-6);
-      },
-      "changing the exponent does not change the domain or range": function(d3) {
-        var x = d3.scale.sqrt().domain([1, 2]).range([3, 4]), f = d3.format(".6f");
-        x.exponent(0.5);
-        assert.deepEqual(x.domain().map(f), [1, 2]);
-        assert.deepEqual(x.range(), [3, 4]);
-        x.exponent(2);
-        assert.deepEqual(x.domain().map(f), [1, 2]);
-        assert.deepEqual(x.range(), [3, 4]);
-        x.exponent(-1);
-        assert.deepEqual(x.domain().map(f), [1, 2]);
-        assert.deepEqual(x.range(), [3, 4]);
       }
     },
 
@@ -183,24 +171,6 @@ suite.addBatch({
     },
 
     "nice": {
-      "can nice the domain, extending it to round numbers": function(d3) {
-        var x = d3.scale.sqrt().domain([1.1, 10.9]).nice(), f = d3.format(".6f");
-        assert.deepEqual(x.domain().map(f), [1, 11]);
-        var x = d3.scale.sqrt().domain([10.9, 1.1]).nice();
-        assert.deepEqual(x.domain().map(f), [11, 1]);
-        var x = d3.scale.sqrt().domain([0.7, 11.001]).nice();
-        assert.deepEqual(x.domain().map(f), [0, 12]);
-        var x = d3.scale.sqrt().domain([123.1, 6.7]).nice();
-        assert.deepEqual(x.domain().map(f), [130, 0]);
-        var x = d3.scale.sqrt().domain([0, 0.49]).nice();
-        assert.deepEqual(x.domain().map(f), [0, 0.5]);
-      },
-      "nicing a polypower domain only affects the extent": function(d3) {
-        var x = d3.scale.sqrt().domain([1.1, 1, 2, 3, 10.9]).nice(), f = d3.format(".6f");
-        assert.deepEqual(x.domain().map(f), [1, 1, 2, 3, 11]);
-        var x = d3.scale.sqrt().domain([123.1, 1, 2, 3, -0.9]).nice();
-        assert.deepEqual(x.domain().map(f), [140, 1, 2, 3, -20]);
-      },
       "preserves specified domain exactly, with no floating point error": function(d3) {
         var x = d3.scale.sqrt().domain([0, 5]).nice();
         assert.deepEqual(x.domain(), [0, 5]);

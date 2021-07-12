@@ -44,21 +44,19 @@ td.success {
 <script src="../../d3.js"></script>
 <script>
 
-var format = d3.format(",.2f");
-
 var tests = [
-  {start:  170, end:  225, expected: [ 170.00, -176.25, -162.50, -148.75, -135.00]},
-  {start:  225, end:  170, expected: [-135.00, -148.75, -162.50, -176.25,  170.00]},
-  {start: -170, end: -225, expected: [-170.00,  176.25,  162.50,  148.75,  135.00]},
-  {start: -225, end: -170, expected: [ 135.00,  148.75,  162.50,  176.25, -170.00]},
-  {start: -170, end:  170, expected: [-170.00, -175.00,  180.00,  175.00,  170.00]},
-  {start: -170, end:    0, expected: [-170.00, -127.50,  -85.00,  -42.50,    0.00]},
-  {start:  170, end:    0, expected: [ 170.00,  127.50,   85.00,   42.50,    0.00]},
-  {start: -180, end:   90, expected: [ 180.00,  157.50,  135.00,  112.50,   90.00]},
-  {start:  180, end:   90, expected: [ 180.00,  157.50,  135.00,  112.50,   90.00]},
-  {start: -180, end:  -90, expected: [-180.00, -157.50, -135.00, -112.50,  -90.00]},
-  {start:  180, end:  -90, expected: [ 180.00, -157.50, -135.00, -112.50,  -90.00]},
-  {start:  780, end:  -90, expected: [  60.00,  22.50,  -15.00,   -52.50,  -90.00]}
+  {start:  170, end:  225, expected: [ 170, -176.25, -162.50, -148.75, -135]},
+  {start:  225, end:  170, expected: [-135, -148.75, -162.50, -176.25,  170]},
+  {start: -170, end: -225, expected: [-170,  176.25,  162.50,  148.75,  135]},
+  {start: -225, end: -170, expected: [ 135,  148.75,  162.50,  176.25, -170]},
+  {start: -170, end:  170, expected: [-170, -175,  180,  175,  170]},
+  {start: -170, end:    0, expected: [-170, -127.50,  -85,  -42.50,    0]},
+  {start:  170, end:    0, expected: [ 170,  127.50,   85,   42.50,    0]},
+  {start: -180, end:   90, expected: [ 180,  157.50,  135,  112.50,   90]},
+  {start:  180, end:   90, expected: [ 180,  157.50,  135,  112.50,   90]},
+  {start: -180, end:  -90, expected: [-180, -157.50, -135, -112.50,  -90]},
+  {start:  180, end:  -90, expected: [ 180, -157.50, -135, -112.50,  -90]},
+  {start:  780, end:  -90, expected: [  60,  22.50,  -15,   -52.50,  -90]}
 ];
 
 var tr = d3.select("tbody").selectAll("tr")
@@ -66,10 +64,10 @@ var tr = d3.select("tbody").selectAll("tr")
   .enter().append("tr");
 
 tr.append("td")
-    .text(function(d) { return format(d.start); });
+    .text(function(d) { return d.start; });
 
 tr.append("td")
-    .text(function(d) { return format(d.end); });
+    .text(function(d) { return d.end; });
 
 tr.selectAll(".actual")
     .data(function(d) {
@@ -82,7 +80,7 @@ tr.selectAll(".actual")
       });
     })
   .enter().append("td")
-    .text(function(d, i) { return format(d.actual); })
+    .text(function(d, i) { return d.actual; })
     .attr("class", function(d) { return Math.abs(d.actual - d.expected) < 0.01 ? "success" : "fail"; });
 
 var ga = tr.append("td").attr("width", 40).append("svg")

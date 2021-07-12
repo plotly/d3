@@ -1,7 +1,6 @@
 var d3 = require("../../");
 
-var formatNumber = d3.format(",.02r"),
-    values = d3.range(0, 1000),
+var values = d3.range(0, 1000),
     key = function(x) { return x; },
     div = d3.select("html").append("div"),
     selection,
@@ -14,7 +13,7 @@ for (var i = 0; i < n; i++) {
   selection.data(values, key);
 }
 
-console.log("selection.data(values, key) (enter) " + formatNumber((Date.now() - then) / i) + "ms/op.");
+console.log("selection.data(values, key) (enter) " + (Date.now() - then) / i) + "ms/op.";
 
 selection.data(values, key)
   .enter().append("div");
@@ -26,4 +25,4 @@ for (var i = 0; i < n; i++) {
   selection.data(values, key);
 }
 
-console.log("selection.data(values, key) (update) " + formatNumber((Date.now() - then) / i) + "ms/op.");
+console.log("selection.data(values, key) (update) " + (Date.now() - then) / i) + "ms/op.";
