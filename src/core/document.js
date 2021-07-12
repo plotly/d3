@@ -1,4 +1,4 @@
-var d3_document = this.document;
+var d3_document = self.document;
 
 function d3_documentElement(node) {
   return node
