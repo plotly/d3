@@ -15,7 +15,6 @@ import "math/";
 import "scale/";
 import "selection/";
 import "svg/";
-import "time/";
 import "transition/";
 import "xhr/";
 
