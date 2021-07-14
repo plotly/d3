@@ -1,4 +1,3 @@
-import "../behavior/drag";
 import "../core/identity";
 import "../core/rebind";
 import "../event/event";
@@ -287,26 +286,6 @@ d3.layout.force = function() {
   force.stop = function() {
     return force.alpha(0);
   };
-
-  // use `node.call(force.drag)` to make nodes draggable
-  force.drag = function() {
-    if (!drag) drag = d3.behavior.drag()
-        .origin(d3_identity)
-        .on("dragstart.force", d3_layout_forceDragstart)
-        .on("drag.force", dragmove)
-        .on("dragend.force", d3_layout_forceDragend);
-
-    if (!arguments.length) return drag;
-
-    this.on("mouseover.force", d3_layout_forceMouseover)
-        .on("mouseout.force", d3_layout_forceMouseout)
-        .call(drag);
-  };
-
-  function dragmove(d) {
-    d.px = d3.event.x, d.py = d3.event.y;
-    force.resume(); // restart annealing
-  }
 
   return d3.rebind(force, event, "on");
 };

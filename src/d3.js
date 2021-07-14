@@ -2,7 +2,6 @@ import "start";
 import "compat/";
 
 import "arrays/";
-import "behavior/";
 import "color/";
 import "core/";
 import "dsv/";
