@@ -6,9 +6,6 @@ var n = +process.argv[2],
     p = +process.argv[3],
     k = +process.argv[4];
 
-var formatTime = d3.format(".3s"),
-    formatNumber = d3.format(",.0f");
-
 // Returns the time required to construct a string interpolator
 // for two strings with n numbers, separated by commas,
 // with probability p that the corresponding numbers in a & b are different.
@@ -28,4 +25,4 @@ function observeConstruction(n, p, k) {
   return sum / k;
 }
 
-console.log(formatTime(observeConstruction(n, p, k)) + "s\tn=" + formatNumber(n) + "\tp=" + p);
+console.log(observeConstruction(n, p, k) + "s\tn=" + n + "\tp=" + p);

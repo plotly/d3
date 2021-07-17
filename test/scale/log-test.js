@@ -264,15 +264,6 @@ suite.addBatch({
           "1e+4"
         ]);
       },
-      "can override the tick format": function(d3) {
-        var x = d3.scale.log().domain([1000.1, 1]);
-        assert.deepEqual(x.ticks().map(x.tickFormat(10, d3.format("+,d"))), [
-          "+1", "+2", "+3", "", "", "", "", "", "",
-          "+10", "+20", "+30", "", "", "", "", "", "",
-          "+100", "+200", "+300", "", "", "", "", "", "",
-          "+1,000"
-        ]);
-      },
       "can override the tick format as string": function(d3) {
         var x = d3.scale.log().domain([1000.1, 1]);
         assert.deepEqual(x.ticks().map(x.tickFormat(10, ".1s")), [
@@ -290,38 +281,6 @@ suite.addBatch({
         assert.deepEqual(x.domain([-1, 0]).ticks(), []);
         assert.deepEqual(x.domain([-1, 1]).ticks(), []);
         assert.deepEqual(x.domain([0, 0]).ticks(), []);
-      }
-    },
-
-    "base two": {
-      topic: function(d3) {
-        return d3.scale.log().domain([1, 32]).base(2);
-      },
-      "with a suitable tick format": {
-        topic: function(x, d3) {
-          return x.ticks().map(x.tickFormat(10, d3.format("+,d")));
-        },
-        "generates ticks at powers of two": function(ticks) {
-          assert.deepEqual(ticks, [
-            "+1", "+2", "+4", "+8", "+16", "+32"
-          ]);
-        }
-      }
-    },
-
-    "base e": {
-      topic: function(d3) {
-        return d3.scale.log().domain([1, 32]).base(Math.E);
-      },
-      "with a suitable tick format": {
-        topic: function(x, d3) {
-          return x.ticks().map(x.tickFormat(10, d3.format("+0.6r")));
-        },
-        "generates ticks at powers of e": function(ticks) {
-          assert.deepEqual(ticks, [
-            "+1.00000", "+2.71828", "+7.38906", "+20.0855"
-          ]);
-        }
       }
     },
 

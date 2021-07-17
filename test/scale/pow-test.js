@@ -101,18 +101,6 @@ suite.addBatch({
         assert.inDelta(x(1.5), 0.6666667, 1e-6);
         assert.inDelta(x(2), 1, 1e-6);
         assert.equal(x.exponent(), -1);
-      },
-      "changing the exponent does not change the domain or range": function(d3) {
-        var x = d3.scale.pow().domain([1, 2]).range([3, 4]), f = d3.format(".6f");
-        x.exponent(0.5);
-        assert.deepEqual(x.domain().map(f), [1, 2]);
-        assert.deepEqual(x.range(), [3, 4]);
-        x.exponent(2);
-        assert.deepEqual(x.domain().map(f), [1, 2]);
-        assert.deepEqual(x.range(), [3, 4]);
-        x.exponent(-1);
-        assert.deepEqual(x.domain().map(f), [1, 2]);
-        assert.deepEqual(x.range(), [3, 4]);
       }
     },
 

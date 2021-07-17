@@ -415,12 +415,6 @@ suite.addBatch({
         var t = g.selectAll("g text");
         assert.equal(t.text(), "foo-0");
       },
-      "affects the generated tick labels": function(d3) {
-        var a = d3.svg.axis().tickFormat(d3.format("+.2%")),
-            g = d3.select("body").html("").append("g").call(a),
-            t = g.selectAll("g text");
-        assert.equal(t.text(), "+0.00%");
-      },
       "can be set to a constant": function(d3) {
         var a = d3.svg.axis().tickFormat("I'm a tick!"),
             g = d3.select("body").html("").append("g").call(a),

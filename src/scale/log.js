@@ -1,4 +1,3 @@
-import "../format/format";
 import "linear";
 import "nice";
 import "scale";
@@ -69,18 +68,6 @@ function d3_scale_log(linear, base, positive, domain) {
     return ticks;
   };
 
-  scale.tickFormat = function(n, format) {
-    if (!arguments.length) return d3_scale_logFormat;
-    if (arguments.length < 2) format = d3_scale_logFormat;
-    else if (typeof format !== "function") format = d3.format(format);
-    var k = Math.max(1, base * n / scale.ticks().length);
-    return function(d) {
-      var i = d / pow(Math.round(log(d)));
-      if (i * base < base - 0.5) i *= base;
-      return i <= k ? format(d) : "";
-    };
-  };
-
   scale.copy = function() {
     return d3_scale_log(linear.copy(), base, positive, domain);
   };
@@ -88,5 +75,4 @@ function d3_scale_log(linear, base, positive, domain) {
   return d3_scale_linearRebind(scale, linear);
 }
 
-var d3_scale_logFormat = d3.format(".0e"),
-    d3_scale_logNiceNegative = {floor: function(x) { return -Math.ceil(-x); }, ceil: function(x) { return -Math.floor(-x); }};
+var d3_scale_logNiceNegative = {floor: function(x) { return -Math.ceil(-x); }, ceil: function(x) { return -Math.floor(-x); }};
