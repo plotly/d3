@@ -1,6 +1,6 @@
 !function() {
   var d3 = {
-    version: "3.8.0"
+    version: "3.8.2"
   };
   var d3_arraySlice = [].slice, d3_array = function(list) {
     return d3_arraySlice.call(list);
@@ -4870,10 +4870,10 @@
     };
   }
   d3.random = {
-    normal: function(µ, σ) {
+    normal: function(mu, sigma) {
       var n = arguments.length;
-      if (n < 2) σ = 1;
-      if (n < 1) µ = 0;
+      if (n < 2) sigma = 1;
+      if (n < 1) mu = 0;
       return function() {
         var x, y, r;
         do {
@@ -4881,7 +4881,7 @@
           y = Math.random() * 2 - 1;
           r = x * x + y * y;
         } while (!r || r > 1);
-        return µ + σ * x * Math.sqrt(-2 * Math.log(r) / r);
+        return mu + sigma * x * Math.sqrt(-2 * Math.log(r) / r);
       };
     },
     logNormal: function() {
